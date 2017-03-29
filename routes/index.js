@@ -3,6 +3,7 @@ var router = express.Router();
 
 db = require('../queries');
 
+router.use(express.static('public'));
 router.get('/api/todos', db.getAllTodos);
 router.get('/api/todos/:id', db.getTodo);
 router.post('/api/todos', db.addTodo);
