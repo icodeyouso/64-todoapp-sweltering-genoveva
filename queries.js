@@ -16,19 +16,8 @@ module.exports = {
   removeTodo: removeTodo
 };
 
-function getAllTodos(req, res, next) {
-  db.any('select * from items')
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retrieved all items'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
+function getAllTodos() {
+  return db.any('select * from items')
 }
 
 function getTodo(req, res, next) {
@@ -52,13 +41,13 @@ function addTodo(req, res, next) {
   req.body.dotime = parseInt(req.body.dotime);
   req.body.done = (req.body.done == 'true');
   console.log("req.body", req);
-  db.none('insert into items(position, item, dotime, done)' +
-      'values(${position}, ${item}, ${dotime}, ${done})', req.body)
-    .then(function () {
+  db.one('insert into items(position, item, dotime, done)' +
+      'values(${position}, ${item}, ${dotime}, ${done}) returning id', req.body)
+    .then(function (result) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Inserted one item'
+          message: `${result.id}`
         });
     })
     .catch(function (err) {
