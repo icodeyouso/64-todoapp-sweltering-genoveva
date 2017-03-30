@@ -4,3 +4,6 @@ body {
 .card {
   margin-bottom: 2px;
 }
+.checked-off {
+  text-decoration: line-through;
+}
