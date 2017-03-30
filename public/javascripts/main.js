@@ -106,9 +106,7 @@ function sortItems() {
       data.position = index;
 
       // Update item
-      updateItem (value, data, function () {
-        console.log("Item " + value + " has been updated with position " + index);
-      });
+      updateItem (value, data, function () {});
     });
   });
 }
@@ -147,7 +145,6 @@ function editItem() {
       data.dotime = $("#dotime").val();
 
       updateItem(id, data, function () {
-        console.log("Item " + id + " has been updated.");
         itemText.html($("#item").val());
         itemDoTime.toArray()[1].innerHTML = parseTime(parseInt(data.dotime));
       });
