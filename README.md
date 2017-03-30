@@ -15,7 +15,8 @@ $ npm start          => Start node
 API calls
 /api/todos        GET    => Return all to-do items  
 /api/todos/:id    GET    => Return to-do item with id  
-/api/todos        POST   => Add a to-do item {position, item, dotime, done}  
+/api/todos        POST   => Add a to-do item {position, item, dotime, done}
+                            Returns id of newly inserted item
 /api/todos/:id    PUT    => Update to-do item with id {... same as above}  
 /api/todos/:id    DELETE => Delete to-do item with id  
 
